@@ -21,7 +21,7 @@ class MessageBubble extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: message.isUser ? Colors.black12 : Colors.black,
+              color: message.isUser ? Colors.black12 : Colors.black87,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(message.isUser ? 10 : 0),
                 topRight: Radius.circular(message.isUser ? 0 : 10),
@@ -32,7 +32,7 @@ class MessageBubble extends StatelessWidget {
             child: Text(
               message.text,
               style: TextStyle(
-                color: message.isUser ? Colors.black : Colors.white,
+                color: message.isUser ? Colors.black87 : Colors.white,
               ),
             ),
           ),

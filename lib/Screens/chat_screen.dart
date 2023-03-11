@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/new_message.dart';
 import '../Models/message.dart';
 import '../widgets/message_bubble.dart';
+import '../Proxy/open_ai.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -12,15 +13,19 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  void _addMessage(messageText) {
+  Future<void> _addMessage(messageText) async {
     setState(() {
       _messages.insert(0, Message(text: messageText, isUser: true));
     });
+
+    final message = await OpenAi.getResponse(messageText);
+
+    setState(() {
+      _messages.insert(0, Message(text: message));
+    });
   }
 
-  final List<Message> _messages = [
-    Message(text: 'hello'),
-  ];
+  final List<Message> _messages = [];
 
   @override
   Widget build(BuildContext context) {
