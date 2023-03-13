@@ -16,11 +16,13 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> _addMessage(messageText) async {
     setState(() {
       _messages.insert(0, Message(text: messageText, isUser: true));
+      _messages.insert(0, Message(text: '...'));
     });
 
     final message = await OpenAi.getResponse(messageText);
 
     setState(() {
+      _messages.removeAt(0);
       _messages.insert(0, Message(text: message));
     });
   }
@@ -33,7 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'EN BOT',
+          'ENNACHAT BOT',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.transparent,
